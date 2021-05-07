@@ -1,0 +1,9 @@
+{% if Domain %}
+    <ul>
+    {% for idx in range(len(Domain)) %}
+        <li><a href="{{URL[idx]}}">{{ Domain[idx] }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
