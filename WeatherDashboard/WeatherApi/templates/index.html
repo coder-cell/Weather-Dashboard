@@ -4,4 +4,7 @@ Number of URL List: {{ URL|length }}
 {% for key, value in URL.items %}
     <li><a href="{{ value }}"> {{ key }} </a></li>
 {% endfor %}
+{% for key, value in Weather.items %}
+    City: {{ key }} and Temperature: {{ value }} &#8457;<br>
+{% endfor %}
 </ul>
