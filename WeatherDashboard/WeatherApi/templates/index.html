@@ -1,10 +1,40 @@
-Number of Domain: {{ Domains|length }}
-Number of URL List: {{ URL|length }}
+
+<style>
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+  background-color: #fff;
+}
+#t01 th {
+  color: white;
+  background-color: black;
+}
+#t01 tr {
+ text-align: center
+}
+</style>
+
 <ul>
 {% for key, value in URL.items %}
     <li><a href="{{ value }}"> {{ key }} </a></li>
 {% endfor %}
-{% for key, value in Weather.items %}
-    City: {{ key }} and Temperature: {{ value }} &#8457;<br>
-{% endfor %}
 </ul>
+<table id="t01" style="width:100%">
+    <tr>
+        <th> City Name </th>
+        <th> Sky Text </th>
+        <th> Temperature </th>
+        <th> Date </th>
+    </tr>
+    {% for city, info in Weather.items %}
+        <tr>
+            <td> {{ city }} </td>
+            <td> {{ info.skytext }} </td>
+            <td> {{ info.temperature }} &#8457; </td>
+            <td> {{ info.date }} </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
