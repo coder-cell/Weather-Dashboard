@@ -1,7 +1,7 @@
-<h1>Domains</h1>
 Number of Domain: {{ Domains|length }}
+Number of URL List: {{ URL|length }}
 <ul>
-{% for key, value in URL_list.items() %}
+{% for key, value in URL.items %}
     <li><a href="{{ value }}"> {{ key }} </a></li>
 {% endfor %}
 </ul>
