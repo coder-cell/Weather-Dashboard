@@ -1,9 +1,7 @@
-{% if Domain %}
-    <ul>
-    {% for idx in range(len(Domain)) %}
-        <li><a href="{{URL[idx]}}">{{ Domain[idx] }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<h1>Domains</h1>
+Number of Domain: {{ Domains|length }}
+<ul>
+{% for key, value in URL_list.items() %}
+    <li><a href="{{ value }}"> {{ key }} </a></li>
+{% endfor %}
+</ul>

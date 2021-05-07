@@ -4,19 +4,21 @@ from django.template import loader
 
 
 def home_page(request):
-    URL_list = [
-        "https://www.google.com/",
-        "https://www.instagram.com/",
-        "https://www.ieee.org/",
-        "https://www.sae.org/"
-    ]
+    URL_list = {
+        'Google': "https://www.google.com/",
+        'Instagram': "https://www.instagram.com/",
+        'IEEE': "https://www.ieee.org/",
+        'SAE': "https://www.sae.org/"
+    }
     Domains = ["Google", "Instagram", "IEEE", "SAE"]
 
     context = {
         'Domains':  Domains,
         'URL': URL_list,
     }
-    return HttpResponse(render(context, request))
+
+    template = loader.get_template('../templates/index.html')
+    return HttpResponse(template.render(context, request))
 
 
 # Create your views here.
