@@ -14,3 +14,4 @@ Repository that Uses Django and Weather API to display the Weather Details.
 The application uses [**python_weather**](https://pypi.org/project/python-weather/) python package to retrive the 
 Weather information for selected cities (Chennai, Mumbai, Delhi, Bangalore).
 Note: This package supports only major cities.
+![img.png](img.png)
