@@ -37,7 +37,7 @@ async def getweather(city):
 
 def parse_csv():
     import csv
-    with open("WeatherDashboard/WeatherApi/artifacts/indian_cities.csv") as csvfile:
+    with open("WeatherDashboard/WeatherApi/artifacts/cities.csv") as csvfile:
         listcities = list()
         csvread = csv.reader(csvfile, delimiter=",")
         linecount = 0
@@ -50,8 +50,8 @@ def parse_csv():
 
 def home_page(request):
 
-    list_of_cities = ["Chennai", "Delhi", "Mumbai", "Bangalore"]
-    # list_of_cities = parse_csv()
+    # list_of_cities = ["Chennai", "Delhi", "Mumbai", "Bangalore"]
+    list_of_cities = parse_csv()
     tempdetails = dict()
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
