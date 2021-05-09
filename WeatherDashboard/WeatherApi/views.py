@@ -47,11 +47,13 @@ def parse_csv():
             linecount += 1
     return listcities
 
+# Create your views here.
+
 
 def home_page(request):
 
-    # list_of_cities = ["Chennai", "Delhi", "Mumbai", "Bangalore"]
-    list_of_cities = parse_csv()
+    list_of_cities = ["Chennai", "Delhi", "Mumbai", "Bangalore"]
+    # list_of_cities = parse_csv()
     tempdetails = dict()
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
@@ -85,4 +87,6 @@ def home_page(request):
     return HttpResponse(template.render(context, request))
 
 
-# Create your views here.
+def forecast(request):
+    template = loader.get_template('../templates/forecast.html')
+    return HttpResponse(template.render(request))
