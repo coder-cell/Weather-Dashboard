@@ -89,4 +89,4 @@ def home_page(request):
 
 def forecast(request):
     template = loader.get_template('../templates/forecast.html')
-    return HttpResponse(template.render(request))
+    return HttpResponse(template.render({}, request))
