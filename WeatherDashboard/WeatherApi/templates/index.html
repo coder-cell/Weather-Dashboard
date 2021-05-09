@@ -31,7 +31,7 @@
     </tr>
     {% for city, info in Weather.items %}
         <tr>
-            <td> {{ city }} </td>
+            <td> <a href="https://www.google.com/maps/place/{{ city }}"> {{ city }} </a></td>
             <td> {{ info.skytext }} </td>
             <td> {{ info.temperature }} &#8457; </td>
             <td> {{ info.date }} </td>
