@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<style>
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+  background-color: #fff;
+}
+#t01 th {
+  color: white;
+  background-color: black;
+}
+#t01 tr {
+ text-align: center
+}
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Forecast Website</title>
 </head>
 <body>
-<h1>This is a forcast Website.</h1>
+<table id="t01" style="width:100%">
+    <tr>
+        <th> Date </th>
+        <th> Temperature </th>
+        <th> Sky Text </th>
+    </tr>
+    {% for info in forecastinfo %}
+          <tr>
+<!--            <td> <a href="{{ city }}"> {{ city }} </a></td>-->
+              <td> {{ info.date }} </td>
+              <td> {{ info.temperature }} &#8457; </td>
+              <td> {{ info.sky_text }} </td>
+          </tr>
+    {% endfor %}
+</table>
 </body>
 </html>

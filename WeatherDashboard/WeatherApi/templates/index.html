@@ -15,7 +15,7 @@
 }
 </style>
 
-<h4 style="text-align: right"> <a href="/forecast">Forecast</a></h4>
+<!--<h4 style="text-align: right"> <a href="/forecast">Forecast</a></h4>-->
 
 <!--<ul>-->
 <!--{% for key, value in URL.items %}-->
@@ -31,7 +31,8 @@
     </tr>
     {% for city, info in Weather.items %}
         <tr>
-            <td> <a href="https://www.google.com/maps/place/{{ city }}"> {{ city }} </a></td>
+<!--            <td> <a href="https://www.google.com/maps/place/{{ city }}"> {{ city }} </a></td>-->
+            <td> <a href="{{ city }}"> {{ city }} </a></td>
             <td> {{ info.skytext }} </td>
             <td> {{ info.temperature }} &#8457; </td>
             <td> {{ info.date }} </td>

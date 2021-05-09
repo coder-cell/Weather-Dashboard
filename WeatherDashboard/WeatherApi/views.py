@@ -35,6 +35,23 @@ async def getweather(city):
     return weather.current
 
 
+async def getforecastweather(city):
+    # declare the client. format defaults to metric system (celcius, km/h, etc.)
+    client = python_weather.Client(format=python_weather.IMPERIAL)
+
+    # fetch a weather forecast from a city
+    weather = await client.find(city)
+
+    info = list()
+    # get the weather forecast for a few days
+    for _forecast in weather.forecast:
+        info.append(_forecast)
+
+    # close the wrapper once done
+    await client.close()
+    return info
+
+
 def parse_csv():
     import csv
     with open("WeatherDashboard/WeatherApi/artifacts/cities.csv") as csvfile:
@@ -87,6 +104,12 @@ def home_page(request):
     return HttpResponse(template.render(context, request))
 
 
-def forecast(request):
+def forecast(request, city):
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    info = loop.run_until_complete(getforecastweather(city))
+    context = {
+        "forecastinfo": info
+    }
     template = loader.get_template('../templates/forecast.html')
-    return HttpResponse(template.render({}, request))
+    return HttpResponse(template.render(context, request))
