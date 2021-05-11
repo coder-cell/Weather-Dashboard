@@ -1,0 +1,15 @@
+import requests
+import json
+
+
+API_KEY = "b2759e8099be4432b8f6a37ff9089770"
+BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
+
+city_name = "Stuttgart"
+
+complete_url = BASE_URL + "appid=" + API_KEY + "&q=" + city_name
+
+response = requests.get(complete_url)
+
+x = response.status_code
+print(x)
