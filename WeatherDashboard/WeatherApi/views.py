@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .apis import pythonweatherapi as pwapi
+from .apis import openweatherapi as openapi
 import asyncio
 import logging
 
@@ -31,33 +31,30 @@ class WeatherInfo:
 def home_page(request):
 
     list_of_cities = ["Chennai", "Delhi", "Mumbai", "Bangalore"]
-    # list_of_cities = pwapi.parse_csv()
     tempdetails = dict()
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+
     for city in list_of_cities:
         try:
-            info = loop.run_until_complete(pwapi.getweather(city))
+            info = openapi.getcurrentdata(city)
             data = WeatherInfo()
-            data.city = city
-            data.date = str(info.date)
+            data.city = info.name
+            data.temperature = info.main.temperature
+            data.mintemp = info.main.temp_min
+            data.maxtemp = info.main.temp_max
+            data.pressure = info.main.pressure
+            data.humidity = info.main.humidity
+            data.sunrise = str(info.sys.sunrise)
+            data.sunset = str(info.sys.sunset)
+            data.country = str(info.sys.country)
+            data.timezone = info.timezone
+            data.date = str(info.dt)
+            data.location = str(info.coord.lat) + ", " + str(info.coord.lon)
             data.skytext = info.sky_text
-            data.temperature = info.temperature
             tempdetails.update({city: data})
         except Exception as err:
             logging.error(str("Missing City {}".format(city)))
 
-    URL_list = {
-        'Google': "https://www.google.com/",
-        'Instagram': "https://www.instagram.com/",
-        'IEEE': "https://www.ieee.org/",
-        'SAE': "https://www.sae.org/"
-    }
-    Domains = ["Google", "Instagram", "IEEE", "SAE"]
-
     context = {
-        'Domains':  Domains,
-        'URL': URL_list,
         'Weather': tempdetails
     }
 
