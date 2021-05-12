@@ -13,7 +13,16 @@ class WeatherInfo:
     def __init__(self):
         self.city = None
         self.temperature = None
+        self.mintemp = None
+        self.maxtemp = None
+        self.pressure = None
+        self.humidity = None
+        self.sunrise = None
+        self.sunset = None
+        self.country = None
+        self.timezone = None
         self.date = None
+        self.location = None
         self.skytext = None
 
 # Create your views here.
