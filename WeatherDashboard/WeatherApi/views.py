@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-import apis.pythonweatherapi as pwapi
+from .apis import pythonweatherapi as pwapi
 import asyncio
 import logging
 
