@@ -25,17 +25,34 @@
 <table id="t01" style="width:100%">
     <tr>
         <th> City Name </th>
+        <th> Date </th>
         <th> Sky Text </th>
         <th> Temperature </th>
-        <th> Date </th>
+        <th> Min. Temp </th>
+        <th> Max. Temp </th>
+        <th> Pressure </th>
+        <th> Humidity </th>
+        <th> Sunrise </th>
+        <th> Sunset </th>
+        <th> Country </th>
+        <th> Timezone </th>
+        <th> Location </th>
     </tr>
     {% for city, info in Weather.items %}
         <tr>
-<!--            <td> <a href="https://www.google.com/maps/place/{{ city }}"> {{ city }} </a></td>-->
             <td> <a href="{{ city }}"> {{ city }} </a></td>
-            <td> {{ info.skytext }} </td>
-            <td> {{ info.temperature }} &#8457; </td>
             <td> {{ info.date }} </td>
+            <td> {{ info.skytext }} </td>
+            <td> {{ info.temperature }} &#8451;</td>
+            <td> {{ info.mintemp }} &#8451; </td>
+            <td> {{ info.maxtemp }} &#8451; </td>
+            <td> {{ info.pressure }} </td>
+            <td> {{ info.humidity }} </td>
+            <td> {{ info.sunrise }} </td>
+            <td> {{ info.sunset }} </td>
+            <td> {{ info.country }} </td>
+            <td> {{ info.timezone }} </td>
+            <td> {{ info.location }} </td>
         </tr>
     {% endfor %}
 </table>

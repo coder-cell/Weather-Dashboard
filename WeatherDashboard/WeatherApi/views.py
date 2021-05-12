@@ -65,7 +65,8 @@ def home_page(request):
 def forecast(request, city):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    info = loop.run_until_complete(pwapi.getforecastweather(city))
+    # info = loop.run_until_complete(pwapi.getforecastweather(city))
+    info = list()
     context = {
         "forecastinfo": info
     }
