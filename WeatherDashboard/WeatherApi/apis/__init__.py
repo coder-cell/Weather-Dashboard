@@ -7,4 +7,4 @@ def convertsecondstoutc(timezone):
     convertime = float(float(timezone)/3600)
     hour = int(convertime)
     minute = (convertime * 60) % 60
-    return "UTC + {}:{}".format(hour, minute)
+    return "UTC + {}:{}".format(hour, int(minute))
