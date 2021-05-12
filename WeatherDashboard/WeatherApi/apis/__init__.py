@@ -4,7 +4,7 @@ def convert_kelvintocelcius(kelvin):
 
 
 def convertsecondstoutc(timezone):
-    convertime = str(float(timezone)/3600)
+    convertime = float(float(timezone)/3600)
     hour = int(convertime)
     minute = (convertime * 60) % 60
     return "UTC + {}:{}".format(hour, minute)
