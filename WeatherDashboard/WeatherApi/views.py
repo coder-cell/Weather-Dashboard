@@ -1,7 +1,9 @@
+import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .apis import openweatherapi as openapi
+from .apis import convertsecondstoutc, convert_kelvintocelcius
 import asyncio
 import logging
 
@@ -38,21 +40,21 @@ def home_page(request):
             info = openapi.getcurrentdata(city)
             data = WeatherInfo()
             data.city = info.name
-            data.temperature = info.main.temperature
-            data.mintemp = info.main.temp_min
-            data.maxtemp = info.main.temp_max
+            data.temperature = convert_kelvintocelcius(info.main.temp)
+            data.mintemp = convert_kelvintocelcius(info.main.temp_min)
+            data.maxtemp = convert_kelvintocelcius(info.main.temp_max)
             data.pressure = info.main.pressure
             data.humidity = info.main.humidity
-            data.sunrise = str(info.sys.sunrise)
-            data.sunset = str(info.sys.sunset)
+            data.sunrise = datetime.datetime.utcfromtimestamp(int(info.sys.sunrise)).strftime("%H:%M:%S")
+            data.sunset = datetime.datetime.utcfromtimestamp(int(info.sys.sunset)).strftime("%H:%M:%S")
             data.country = str(info.sys.country)
-            data.timezone = info.timezone
-            data.date = str(info.dt)
+            data.timezone = convertsecondstoutc(info.timezone)
+            data.date = datetime.datetime.utcfromtimestamp(int(info.dt)).strftime("%d-%m-%Y")
             data.location = str(info.coord.lat) + ", " + str(info.coord.lon)
-            data.skytext = info.sky_text
+            data.skytext = info.weather[0].description
             tempdetails.update({city: data})
         except Exception as err:
-            logging.error(str("Missing City {}".format(city)))
+            logging.error(str("Missing City {0} with error {1}".format(city, str(err))))
 
     context = {
         'Weather': tempdetails
