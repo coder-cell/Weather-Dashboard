@@ -37,7 +37,7 @@ def home_page(request):
 
     for city in list_of_cities:
         try:
-            info = openapi.getcurrentdata(city)
+            info = openapi.getweatherdata(city)
             data = WeatherInfo()
             data.city = info.name
             data.temperature = convert_kelvintocelcius(info.main.temp)
@@ -65,12 +65,26 @@ def home_page(request):
 
 
 def forecast(request, city):
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
     # info = loop.run_until_complete(pwapi.getforecastweather(city))
-    info = list()
+    forcastlist = list()
+    jsondatadict = openapi.getweatherdata(city, forecast=True)
+    for info in jsondatadict.list:
+        data = WeatherInfo()
+        data.temperature = convert_kelvintocelcius(info.main.temp)
+        data.mintemp = convert_kelvintocelcius(info.main.temp_min)
+        data.maxtemp = convert_kelvintocelcius(info.main.temp_max)
+        data.pressure = info.main.pressure
+        data.humidity = info.main.humidity
+        data.date = datetime.datetime.utcfromtimestamp(int(info.dt)).strftime("%d-%m-%Y")
+        data.skytext = info.weather[0].description
+        forcastlist.append(data)
+
     context = {
-        "forecastinfo": info
+        "city": city,
+        "location": str(jsondatadict.city.coord.lat) + ", " + str(jsondatadict.city.coord.lon),
+        "timezone": convertsecondstoutc(jsondatadict.city.timezone),
+        "country": jsondatadict.city.country,
+        "forecastinfo": forcastlist
     }
     template = loader.get_template('../templates/forecast.html')
     return HttpResponse(template.render(context, request))

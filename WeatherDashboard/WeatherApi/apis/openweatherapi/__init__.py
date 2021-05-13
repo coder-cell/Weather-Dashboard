@@ -5,7 +5,7 @@ from types import SimpleNamespace
 API_KEY = "b2759e8099be4432b8f6a37ff9089770"
 
 
-def getcurrentdata(city, forecast=False):
+def getweatherdata(city, forecast=False):
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
     if forecast:
@@ -18,3 +18,4 @@ def getcurrentdata(city, forecast=False):
     x = response.json()
     strjson = json.dumps(x)
     return json.loads(strjson, object_hook=lambda d: SimpleNamespace(**d))
+

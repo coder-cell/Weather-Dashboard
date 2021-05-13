@@ -4,9 +4,9 @@ from types import SimpleNamespace
 
 
 API_KEY = "b2759e8099be4432b8f6a37ff9089770"
-BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
+# BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
 
-# BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?"
+BASE_URL = "https://api.openweathermap.org/data/2.5/forecast?"
 
 city_name = "Chennai"
 

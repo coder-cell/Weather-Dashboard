@@ -22,18 +22,28 @@
     <title>Forecast Website</title>
 </head>
 <body>
+<h1 style="text-align: center"> {{ city }}
+    [Location:( {{ location }}), Country: {{ country }}, Timezone: {{ timezone }}] </h1>
+
 <table id="t01" style="width:100%">
     <tr>
         <th> Date </th>
-        <th> Temperature </th>
         <th> Sky Text </th>
+        <th> Temperature </th>
+        <th> Min. Temp </th>
+        <th> Max. Temp </th>
+        <th> Pressure </th>
+        <th> Humidity </th>
     </tr>
     {% for info in forecastinfo %}
           <tr>
-<!--            <td> <a href="{{ city }}"> {{ city }} </a></td>-->
-              <td> {{ info.date }} </td>
-              <td> {{ info.temperature }} &#8457; </td>
-              <td> {{ info.sky_text }} </td>
+            <td> {{ info.date }} </td>
+            <td> {{ info.skytext }} </td>
+            <td> {{ info.temperature }} &#8451;</td>
+            <td> {{ info.mintemp }} &#8451; </td>
+            <td> {{ info.maxtemp }} &#8451; </td>
+            <td> {{ info.pressure }} </td>
+            <td> {{ info.humidity }} </td>
           </tr>
     {% endfor %}
 </table>
