@@ -75,7 +75,7 @@ def forecast(request, city):
         data.maxtemp = convert_kelvintocelcius(info.main.temp_max)
         data.pressure = info.main.pressure
         data.humidity = info.main.humidity
-        data.date = datetime.datetime.utcfromtimestamp(int(info.dt)).strftime("%d-%m-%Y")
+        data.date = datetime.datetime.utcfromtimestamp(int(info.dt)).strftime("%d-%m-%Y %H:%M:%S")
         data.skytext = info.weather[0].description
         forcastlist.append(data)
 
