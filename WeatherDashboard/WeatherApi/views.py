@@ -38,6 +38,7 @@ def home_page(request):
     for city in list_of_cities:
         try:
             info = openapi.getweatherdata(city)
+            logging.info("Status Code: {}".format(info.cod))
             data = WeatherInfo()
             data.city = info.name
             data.temperature = convert_kelvintocelcius(info.main.temp)
@@ -68,6 +69,7 @@ def forecast(request, city):
     # info = loop.run_until_complete(pwapi.getforecastweather(city))
     forcastlist = list()
     jsondatadict = openapi.getweatherdata(city, forecast=True)
+    logging.info("Status Code: {}".format(jsondatadict.cod))
     for info in jsondatadict.list:
         data = WeatherInfo()
         data.temperature = convert_kelvintocelcius(info.main.temp)
