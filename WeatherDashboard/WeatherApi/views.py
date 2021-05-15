@@ -65,7 +65,6 @@ def home_page(request):
 
 
 def forecast(request, city):
-    # info = loop.run_until_complete(pwapi.getforecastweather(city))
     forcastlist = list()
     jsondatadict = openapi.getweatherdata(city, forecast=True)
     logging.info("Status Code: {}".format(jsondatadict.cod))

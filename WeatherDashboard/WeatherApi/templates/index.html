@@ -2,13 +2,14 @@
 
 </head>
 
-<body>
+<body onloadstart="cleardata('fname')">
+
  <script>
 function cleardata(elementid){
     console.log("Clearing");
     var element = document.getElementById(elementid)
     element.value = "";
-
+    document.getElementById('t01').remove()
 }
 </script>
 
