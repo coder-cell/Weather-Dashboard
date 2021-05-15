@@ -1,3 +1,16 @@
+<head>
+
+</head>
+
+<body>
+ <script>
+function cleardata(elementid){
+    console.log("Clearing");
+    var element = document.getElementById(elementid)
+    element.value = "";
+
+}
+</script>
 
 <style>
 #t01 tr:nth-child(even) {
@@ -14,10 +27,16 @@
  text-align: center
 }
 </style>
-<label for="fname"><b>City name:</b></label>
-<input type="text" id="fname" name="fname">
-<input type="button" value="Search" onclick="msg()">
 
+<form action = "" method="POST"> {% csrf_token %}
+    <label><b>City name:</b></label>
+    <input type="text" id="fname" name="fname">
+    <button  onclick=document.getElementById("fname").submit()/> Search </button>
+    <button  onclick="cleardata('fname')" > Clear </button>
+</form>
+
+
+{% if Weather.keys|length %}
 <table id="t01" style="width:100%">
     <tr>
         <th> City Name </th>
@@ -51,6 +70,8 @@
             <td> {{ info.location }} </td>
         </tr>
     {% endfor %}
+
+    {% endif %}
 </table>
 
-
+</body>

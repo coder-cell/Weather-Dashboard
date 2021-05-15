@@ -31,10 +31,9 @@ class WeatherInfo:
 
 
 def home_page(request):
-
-    list_of_cities = ["Chennai", "Delhi", "Mumbai", "Bangalore"]
     tempdetails = dict()
-
+    cityname = request.POST['fname']
+    list_of_cities = [cityname]
     for city in list_of_cities:
         try:
             info = openapi.getweatherdata(city)
